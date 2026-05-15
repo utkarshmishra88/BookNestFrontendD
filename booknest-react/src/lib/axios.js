@@ -13,7 +13,9 @@ import toast from 'react-hot-toast';
  *  - Network error normalisation
  */
 const apiClient = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_API_BASE_URL
+    ? `${import.meta.env.VITE_API_BASE_URL}/api`
+    : '/api',
   timeout: 15000,
   headers: {
     'Content-Type': 'application/json',
@@ -43,13 +45,12 @@ apiClient.interceptors.response.use(
       (typeof raw === 'string' ? raw : raw?.message) ||
       raw?.error ||
       error.message;
+
     if (typeof message === 'object') {
       message = message?.message || JSON.stringify(message);
     }
 
     if (status === 401) {
-      // Only auto-logout if trying to access a truly protected route
-      // For other 401 errors, let the component handle it
       console.error('401 Unauthorized - token may be invalid');
       console.error('Full error response:', error.response?.data);
       console.error('Request headers sent:', error.config?.headers);
@@ -66,7 +67,6 @@ apiClient.interceptors.response.use(
       console.error('API Error:', status, message);
     }
 
-    // Normalise error message for consumers
     return Promise.reject(
       new Error(typeof message === 'string' ? message : 'An unexpected error occurred.')
     );
