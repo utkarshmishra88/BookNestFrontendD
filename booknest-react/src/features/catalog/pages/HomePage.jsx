@@ -45,20 +45,20 @@ const HomePage = () => {
               India's Premier Literary Destination
             </div>
 
-            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight mb-6">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight mb-6">
               Every story<br />
               <span className="text-parchment-400 italic">finds its reader</span>
             </h1>
 
-            <p className="font-body text-forest-200 text-lg leading-relaxed mb-8 max-w-lg">
+            <p className="font-body text-forest-200 text-base md:text-lg leading-relaxed mb-8 max-w-lg">
               Discover curated literature, rare finds, and beloved classics. Your next favourite book is waiting.
             </p>
 
-            <div className="flex flex-wrap gap-3">
-              <Link to="/books" className="btn-gold px-6 py-3 text-base">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link to="/books" className="btn-gold px-6 py-3 text-base w-full sm:w-auto">
                 Browse Catalogue <FiArrowRight className="w-4 h-4" />
               </Link>
-              <Link to="/register" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-parchment-400/30 text-parchment-200 hover:bg-parchment-400/10 font-sans font-medium text-base transition-colors duration-200">
+              <Link to="/register" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-parchment-400/30 text-parchment-200 hover:bg-parchment-400/10 font-sans font-medium text-base transition-colors duration-200 w-full sm:w-auto">
                 Join Free
               </Link>
             </div>
@@ -75,8 +75,8 @@ const HomePage = () => {
       </section>
 
       {/* ── Features strip ────────────────────────── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-1 py-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-1 py-10 md:py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
           {FEATURES.map(({ icon: Icon, title, desc }, i) => (
             <div
               key={i}

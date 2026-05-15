@@ -181,8 +181,8 @@ const AdminBooksPage = () => {
   };
 
   return (
-    <div className="p-8">
-      <div className="flex items-center justify-between mb-6">
+    <div className="p-4 md:p-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <h1 className="font-display text-2xl text-ink-900 dark:text-white">Manage Books</h1>
         <button 
           onClick={() => {
@@ -196,7 +196,7 @@ const AdminBooksPage = () => {
             }
             setModal('create');
           }} 
-          className="btn-primary"
+          className="btn-primary w-full sm:w-auto"
           disabled={categoriesLoading}
         >
           <FiPlus className="w-4 h-4" /> Add Book
@@ -205,12 +205,12 @@ const AdminBooksPage = () => {
 
       {/* Search */}
       <div className="relative mb-5 max-w-sm">
-        <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-400 w-4 h-4" />
+        <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-500 dark:text-ink-400 w-4 h-4" />
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search books…"
-          className="input-field pl-9"
+          className="input-field pl-9 h-11"
         />
       </div>
 
@@ -218,44 +218,46 @@ const AdminBooksPage = () => {
         <div className="flex justify-center py-20"><Spinner size="lg" /></div>
       ) : (
         <div className="card overflow-hidden">
-          <table className="w-full">
-            <thead className="bg-parchment-50 dark:bg-ink-900 border-b border-parchment-200 dark:border-ink-700">
-              <tr>
-                {['Title', 'Author', 'Category', 'Price', 'Stock', 'Actions'].map((h) => (
-                  <th key={h} className="px-4 py-3 text-left font-sans text-xs font-medium text-ink-500 dark:text-ink-400 uppercase tracking-wider">{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-parchment-100">
-              {filtered.map((book) => (
-                <tr key={book.bookId} className="hover:bg-parchment-50 dark:bg-ink-900 transition-colors">
-                  <td className="px-4 py-3 font-sans text-sm text-ink-800 dark:text-parchment-50 max-w-[160px] truncate">{book.title}</td>
-                  <td className="px-4 py-3 font-sans text-sm text-ink-600 dark:text-ink-400 max-w-[120px] truncate">{book.author}</td>
-                  <td className="px-4 py-3"><span className="badge-green text-xs">{book.category?.categoryName || book.category?.name || book.categoryName || '—'}</span></td>
-                  <td className="px-4 py-3 font-sans text-sm text-ink-800 dark:text-parchment-50">₹{book.price?.toFixed(2)}</td>
-                  <td className="px-4 py-3">
-                    <span className={book.stock > 0 ? 'badge-green' : 'badge-red'}>{book.stock}</span>
-                  </td>
-                  <td className="px-4 py-3">
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => setModal(book)}
-                        className="w-7 h-7 rounded-lg flex items-center justify-center text-ink-500 dark:text-ink-400 hover:bg-parchment-100 dark:bg-ink-800 hover:text-ink-800 dark:text-parchment-50 transition-colors"
-                      >
-                        <FiEdit2 className="w-3.5 h-3.5" />
-                      </button>
-                      <button
-                        onClick={() => { if (confirm('Delete this book?')) deleteMutation.mutate(book.bookId); }}
-                        className="w-7 h-7 rounded-lg flex items-center justify-center text-red-400 hover:bg-red-50 hover:text-red-600 transition-colors"
-                      >
-                        <FiTrash2 className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  </td>
+          <div className="overflow-x-auto scrollbar-hide">
+            <table className="w-full">
+              <thead className="bg-parchment-50 dark:bg-ink-900 border-b border-parchment-200 dark:border-ink-700">
+                <tr>
+                  {['Title', 'Author', 'Category', 'Price', 'Stock', 'Actions'].map((h) => (
+                    <th key={h} className="px-4 py-3 text-left font-sans text-xs font-medium text-ink-500 dark:text-ink-400 uppercase tracking-wider">{h}</th>
+                  ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-parchment-100">
+                {filtered.map((book) => (
+                  <tr key={book.bookId} className="hover:bg-parchment-50 dark:bg-ink-900 transition-colors">
+                    <td className="px-4 py-3 font-sans text-sm text-ink-800 dark:text-parchment-50 max-w-[160px] truncate">{book.title}</td>
+                    <td className="px-4 py-3 font-sans text-sm text-ink-600 dark:text-ink-400 max-w-[120px] truncate">{book.author}</td>
+                    <td className="px-4 py-3"><span className="badge-green text-xs">{book.category?.categoryName || book.category?.name || book.categoryName || '—'}</span></td>
+                    <td className="px-4 py-3 font-sans text-sm text-ink-800 dark:text-parchment-50">₹{book.price?.toFixed(2)}</td>
+                    <td className="px-4 py-3">
+                      <span className={book.stock > 0 ? 'badge-green' : 'badge-red'}>{book.stock}</span>
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => setModal(book)}
+                          className="w-7 h-7 rounded-lg flex items-center justify-center text-ink-500 dark:text-ink-400 hover:bg-parchment-100 dark:bg-ink-800 hover:text-ink-800 dark:text-parchment-50 transition-colors"
+                        >
+                          <FiEdit2 className="w-3.5 h-3.5" />
+                        </button>
+                        <button
+                          onClick={() => { if (confirm('Delete this book?')) deleteMutation.mutate(book.bookId); }}
+                          className="w-7 h-7 rounded-lg flex items-center justify-center text-red-400 hover:bg-red-50 hover:text-red-600 transition-colors"
+                        >
+                          <FiTrash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
 

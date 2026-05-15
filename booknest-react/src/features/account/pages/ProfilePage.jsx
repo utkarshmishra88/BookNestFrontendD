@@ -273,14 +273,14 @@ const ProfilePage = () => {
 
               <div>
                 <label className="font-sans text-xs text-ink-500 dark:text-ink-400 uppercase">Mobile Number (WhatsApp)</label>
-                <div className="flex flex-col sm:flex-row gap-2 mt-1">
+                <div className="flex flex-col sm:flex-row gap-3 mt-1">
                   <input
                     className="input-field flex-1"
                     value={draftMobileNumber}
                     onChange={(e) => setDraftMobileNumber(e.target.value)}
                     placeholder="+919876543210"
                   />
-                  <button type="button" className="btn-primary shrink-0" disabled={savingProfile} onClick={onSaveProfile}>
+                  <button type="button" className="btn-primary w-full sm:w-auto" disabled={savingProfile} onClick={onSaveProfile}>
                     {savingProfile ? '…' : <><FiSave className="w-4 h-4" /> Save Profile</>}
                   </button>
                 </div>
@@ -330,7 +330,7 @@ const ProfilePage = () => {
                     </div>
                     <button
                       type="button"
-                      className="btn-primary shrink-0"
+                      className="btn-primary w-full sm:w-auto mt-2 sm:mt-0"
                       disabled={savingProfile}
                       onClick={onConfirmEmailOtp}
                     >

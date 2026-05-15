@@ -139,20 +139,20 @@ const BookListPage = () => {
         {/* ── Main content ─────────────────────── */}
         <div className="flex-1 min-w-0">
           {/* Mobile filter bar */}
-          <div className="flex items-center gap-2 mb-4 lg:hidden">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-6 lg:hidden">
             <div className="relative flex-1">
-              <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-400 w-4 h-4" />
+              <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-500 dark:text-ink-400 w-4 h-4" />
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search…"
-                className="w-full pl-9 pr-4 py-2 rounded-lg border border-parchment-300 dark:border-ink-600 bg-white dark:bg-ink-800 text-sm focus:outline-none focus:ring-2 focus:ring-forest-400/40"
+                placeholder="Search books…"
+                className="w-full pl-9 pr-4 py-2.5 rounded-lg border border-parchment-300 dark:border-ink-600 bg-white dark:bg-ink-800 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400/50"
               />
             </div>
             <button
               onClick={() => setFilterOpen(!filterOpen)}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-parchment-300 dark:border-ink-600 bg-white dark:bg-ink-800 text-sm font-sans text-ink-700 dark:text-ink-300"
+              className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg border border-parchment-300 dark:border-ink-600 bg-white dark:bg-ink-800 text-sm font-sans text-ink-700 dark:text-ink-300 transition-colors hover:bg-parchment-50"
             >
               <FiFilter className="w-4 h-4" /> Filters
             </button>

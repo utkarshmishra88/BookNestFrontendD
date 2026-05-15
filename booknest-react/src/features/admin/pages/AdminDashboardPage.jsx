@@ -40,14 +40,14 @@ const AdminDashboardPage = () => {
   const totalRevenue = orders.reduce((s, o) => s + (o.totalAmount ?? 0), 0);
 
   return (
-    <div className="p-8">
-      <div className="mb-8">
+    <div className="p-4 md:p-8">
+      <div className="mb-6 md:mb-8">
         <h1 className="font-display text-2xl text-ink-900 dark:text-white">Dashboard</h1>
         <p className="font-sans text-sm text-ink-500 dark:text-ink-400 mt-1">Welcome back, {user?.fullName}</p>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 md:mb-10">
         <StatCard icon={FiBook}      label="Total Books"    value={books.length}         color="bg-forest-50 text-forest-600" />
         <StatCard icon={FiShoppingBag} label="Total Orders" value={orders.length}        color="bg-brand-50 text-brand-600" />
         <StatCard icon={FiDollarSign} label="Revenue"      value={`₹${Number(totalRevenue ?? 0).toFixed(0)}`} color="bg-blue-50 text-blue-600" />
@@ -55,11 +55,11 @@ const AdminDashboardPage = () => {
       </div>
 
       {/* Recent books table */}
-      <div className="card">
-        <div className="p-5 border-b border-parchment-100">
+      <div className="card overflow-hidden">
+        <div className="p-4 md:p-5 border-b border-parchment-100 dark:border-ink-700">
           <h2 className="font-sans font-medium text-ink-800 dark:text-parchment-50">Recent Books</h2>
         </div>
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto scrollbar-hide">
           <table className="w-full">
             <thead className="bg-parchment-50 dark:bg-ink-900 border-b border-parchment-200 dark:border-ink-700">
               <tr>
