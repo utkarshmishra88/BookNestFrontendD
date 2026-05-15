@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    tools { nodejs 'NodeJS-18' }
+    tools { nodejs 'NodeJS-20' }
     triggers { githubPush() }
     stages {
         stage('Install & Build') {
