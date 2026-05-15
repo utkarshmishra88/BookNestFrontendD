@@ -238,22 +238,22 @@ const ProfilePage = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
         {/* Profile Details Section */}
         <motion.div className="card p-6" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <div className="flex items-center justify-between gap-4 mb-6 pb-6 border-b border-parchment-200 dark:border-ink-700">
-            <div className="flex items-center gap-5">
-              <div className="w-16 h-16 rounded-2xl bg-sky-600 flex items-center justify-center text-3xl text-white font-display">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-6 pb-6 border-b border-parchment-200 dark:border-ink-700">
+            <div className="flex items-center gap-4 sm:gap-5">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-sky-600 flex items-center justify-center text-2xl sm:text-3xl text-white font-display flex-shrink-0">
                 {displayName?.charAt(0)?.toUpperCase()}
               </div>
-              <div>
-                <h2 className="font-display text-xl text-ink-900 dark:text-white">{displayName}</h2>
-                <p className="font-sans text-sm text-ink-500 dark:text-ink-400">{displayEmail}</p>
+              <div className="min-w-0">
+                <h2 className="font-display text-lg sm:text-xl text-ink-900 dark:text-white truncate">{displayName}</h2>
+                <p className="font-sans text-sm text-ink-500 dark:text-ink-400 truncate">{displayEmail}</p>
                 <span className={`mt-1 inline-block ${user?.role === 'ADMIN' ? 'badge-red' : 'badge-sky'}`}>
                   {user?.role}
                 </span>
               </div>
             </div>
             {!editingProfile && (
-              <button type="button" className="btn-secondary shrink-0" onClick={() => setEditingProfile(true)}>
-                <FiEdit2 className="w-4 h-4" /> Edit
+              <button type="button" className="btn-secondary w-full sm:w-auto" onClick={() => setEditingProfile(true)}>
+                <FiEdit2 className="w-4 h-4" /> Edit Profile
               </button>
             )}
           </div>
@@ -280,8 +280,8 @@ const ProfilePage = () => {
                     onChange={(e) => setDraftMobileNumber(e.target.value)}
                     placeholder="+919876543210"
                   />
-                  <button type="button" className="btn-primary w-full sm:w-auto" disabled={savingProfile} onClick={onSaveProfile}>
-                    {savingProfile ? '…' : <><FiSave className="w-4 h-4" /> Save Profile</>}
+                  <button type="button" className="btn-primary w-full sm:w-auto flex-shrink-0" disabled={savingProfile} onClick={onSaveProfile}>
+                    {savingProfile ? '…' : <><FiSave className="w-4 h-4" /> Save changes</>}
                   </button>
                 </div>
               </div>
@@ -340,10 +340,10 @@ const ProfilePage = () => {
                 </div>
               )}
 
-              <div className="flex gap-2 pt-2">
+              <div className="flex pt-2">
                 <button
                   type="button"
-                  className="btn-secondary"
+                  className="btn-secondary w-full sm:w-auto"
                   onClick={() => {
                     setEditingProfile(false);
                     setEmailOtpSent(false);
@@ -354,7 +354,7 @@ const ProfilePage = () => {
                     setDraftMobileNumber(profile?.mobileNumber || user?.mobileNumber || '');
                   }}
                 >
-                  Cancel
+                  Close Edit Mode
                 </button>
               </div>
             </div>
@@ -500,17 +500,17 @@ const ProfilePage = () => {
                             />
                             Default address
                           </label>
-                          <div className="flex gap-2">
-                            <button type="button" className="btn-primary" onClick={() => onSaveAddress(addr.addressId)}>
-                              <FiSave className="w-4 h-4" /> Save
+                         <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                            <button type="button" className="btn-primary w-full sm:w-auto" onClick={() => onSaveAddress(addr.addressId)}>
+                              <FiSave className="w-4 h-4" /> Save changes
                             </button>
-                            <button type="button" className="btn-secondary" onClick={() => setEditingId(null)}>Cancel</button>
+                            <button type="button" className="btn-secondary w-full sm:w-auto" onClick={() => setEditingId(null)}>Cancel</button>
                           </div>
                         </div>
                       </div>
                     ) : (
-                      <div className="flex items-start justify-between gap-4">
-                        <div>
+                       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                        <div className="min-w-0">
                           <p className="font-sans text-sm font-semibold text-ink-900 dark:text-white flex items-center gap-2 flex-wrap">
                             {addr.label || 'Address'} {addr.isDefault ? <span className="badge-sky">Default</span> : null}
                           </p>
@@ -519,11 +519,11 @@ const ProfilePage = () => {
                               <FiPhone className="w-3.5 h-3.5" /> {addr.mobileNumber}
                             </p>
                           ) : null}
-                          <p className="font-sans text-sm text-ink-700 dark:text-ink-300 mt-1">
+                          <p className="font-sans text-sm text-ink-700 dark:text-ink-300 mt-1 break-words">
                             {[addr.line1, addr.line2, addr.city, addr.state, addr.postalCode, addr.country].filter(Boolean).join(', ')}
                           </p>
                         </div>
-                        <button type="button" className="btn-secondary shrink-0" onClick={() => onEditAddress(addr)}>
+                        <button type="button" className="btn-secondary w-full sm:w-auto flex-shrink-0" onClick={() => onEditAddress(addr)}>
                           <FiEdit2 className="w-4 h-4" /> Edit
                         </button>
                       </div>
