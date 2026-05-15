@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="BookNest — Your Premium Online Bookstore" />
+    <title>BookNest</title>
+    <!-- Google Fonts: Playfair Display + Lora + DM Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Razorpay SDK for payment integration -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+      :root {
+        --color-parchment-400: #f5c694;
+        --color-ink-900: #1a1714;
+      }
+      
+      .btn-gold {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        background-color: var(--color-parchment-400);
+        color: var(--color-ink-900);
+        font-weight: 500;
+        font-size: 1rem;
+        transition: opacity 0.2s;
+      }
+      
+      .btn-gold:hover {
+        opacity: 0.9;
+      }
+      
+      .section-title {
+        font-family: 'Playfair Display', Georgia, serif;
+        color: var(--color-ink-900);
+        font-size: 2.25rem;
+        font-weight: 600;
+        line-height: 1.2;
+      }
+      
+      @media (min-width: 768px) {
+        .section-title {
+          font-size: 3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
